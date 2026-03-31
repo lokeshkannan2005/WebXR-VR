@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VR Ball Sports Gallery</title>
+
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+  <style>
+    body { margin: 0; }
+  </style>
+
+<script>
+AFRAME.registerComponent('show-model', {
+  schema: {
+    message: { type: 'string' },
+    model: { type: 'selector' }
+  },
+
+  init: function () {
+    this.el.addEventListener('click', () => {
+
+      // Update text
+      document.querySelector('#infoText')
+        .setAttribute('value', this.data.message);
+
+      // Hide all models
+      document.querySelectorAll('.fitness-model')
+        .forEach(m => m.setAttribute('visible', false));
+
+      // Show selected model
+      if (this.data.model) {
+        this.data.model.setAttribute('visible', true);
+      }
+
+    });
+  }
+});
+</script>
+
+</head>
+
+<body>
+
+<a-scene background="color: #f2f2f2">
+
+  <!-- CAMERA -->
+  <a-entity position="0 0 3" wasd-controls>
+    <a-entity camera look-controls position="0 1.6 0">
+      <a-cursor raycaster="objects: .clickable"></a-cursor>
+    </a-entity>
+  </a-entity>
+
+  <!-- LIGHT -->
+  <a-light type="ambient" intensity="0.8"></a-light>
+  <a-light type="directional" position="0 5 5"></a-light>
+
+  <!-- FLOOR -->
+  <a-plane position="0 -1 0" rotation="-90 0 0"
+           width="12" height="12" color="#9CAF88"></a-plane>
+
+  <!-- WALLS -->
+  <a-plane position="0 2 -6" width="12" height="5" color="#FFA4A4"></a-plane>
+
+  <a-plane position="-6 2 0" rotation="0 90 0"
+           width="12" height="5" color="#FFBDBD"></a-plane>
+
+  <a-plane position="6 2 0" rotation="0 -90 0"
+           width="12" height="5" color="#FFBDBD"></a-plane>
+
+  <!-- CEILING -->
+  <a-plane position="0 5 0" rotation="90 0 0"
+           width="12" height="12" color="#FFF5F5"></a-plane>
+
+  <!-- TEXT -->
+  <a-text id="infoText"
+          value="Ball Sports Gallery"
+          position="0 4 -5.8"
+          align="center"
+          width="10"
+          color="#8A3324">
+  </a-text>
+
+  <!-- ================= MODELS ================= -->
+
+  <a-entity id="basketball3D" class="fitness-model"
+            gltf-model="models/basketball.glb"
+            position="0 0 2"
+            scale="0.6 0.6 0.6"
+            visible="false"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+  </a-entity>
+
+  <a-entity id="football3D" class="fitness-model"
+            gltf-model="models/soccer_ball__football.glb"
+            position="0 0 2"
+            scale="3 3 3"
+            visible="false"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+  </a-entity>
+
+  <a-entity id="golfball3D" class="fitness-model"
+            gltf-model="models/golf_ball_low-poly.glb"
+            position="0 0 2"
+            scale="2 2 2"
+            visible="false"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+  </a-entity>
+
+  <a-entity id="volleyball3D" class="fitness-model"
+            gltf-model="models/generic_volleyball_ball_low-poly.glb"
+            position="0 0 2"
+            scale="3 3 3"
+            visible="false"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+  </a-entity>
+
+  <a-entity id="cricketball3D" class="fitness-model"
+            gltf-model="models/tennis_ball.glb"
+            position="0 0 2"
+            scale="0.1 0.1 0.1"
+            visible="false"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+  </a-entity>
+
+  <!-- ================= POSTERS ================= -->
+
+  <!-- Back Wall -->
+  <a-plane class="clickable"
+           src="images/basketball.png"
+           position="-3 1.6 -5.9"
+           width="2" height="2"
+           show-model="message: Basketball; model: #basketball3D">
+  </a-plane>
+
+  <a-plane class="clickable"
+           src="images/football.png"
+           position="0 1.6 -5.9"
+           width="2" height="2"
+           show-model="message: Football; model: #football3D">
+  </a-plane>
+
+  <a-plane class="clickable"
+           src="images/golfball.png"
+           position="3 1.6 -5.9"
+           width="2" height="2"
+           show-model="message: Golf Ball; model: #golfball3D">
+  </a-plane>
+
+  <!-- Side Walls -->
+  <a-plane class="clickable"
+           src="images/volleyball.png"
+           position="-5.8 1.6 0"
+           rotation="0 90 0"
+           width="2" height="2"
+           show-model="message: Volleyball; model: #volleyball3D">
+  </a-plane>
+
+  <a-plane class="clickable"
+           src="images/cricketball.png"
+           position="5.8 1.6 0"
+           rotation="0 -90 0"
+           width="2" height="2"
+           show-model="message: Cricket Ball; model: #cricketball3D">
+  </a-plane>
+
+</a-scene>
+
+</body>
+</html>
