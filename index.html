@@ -7,7 +7,7 @@
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
   <style>
-    body { margin: 0; background: #0f1115; }
+    body { margin: 0; }
   </style>
 
 <script>
@@ -39,79 +39,68 @@ AFRAME.registerComponent('show-model', {
 
 <body>
 
-<a-scene background="color: #0f1115">
+<a-scene background="color: #87CEEB"> <!-- Sky blue -->
 
   <!-- CAMERA -->
   <a-entity position="0 0 3" wasd-controls>
     <a-entity camera look-controls position="0 1.6 0">
-      <a-cursor raycaster="objects: .clickable"
-                color="#ffffff">
-      </a-cursor>
+      <a-cursor raycaster="objects: .clickable" color="#ffffff"></a-cursor>
     </a-entity>
   </a-entity>
 
-  <!-- LIGHTING (PROFESSIONAL SETUP) -->
-  <a-light type="ambient" intensity="0.5" color="#ffffff"></a-light>
+  <!-- LIGHTING (OUTDOOR STYLE) -->
+  <a-light type="ambient" intensity="0.7" color="#ffffff"></a-light>
 
   <a-light type="directional"
-           position="2 5 3"
-           intensity="0.8"
+           position="2 6 3"
+           intensity="1"
            color="#ffffff">
   </a-light>
 
-  <a-light type="directional"
-           position="-2 5 -3"
-           intensity="0.4"
-           color="#cccccc">
-  </a-light>
-
-  <!-- FLOOR -->
+  <!-- FLOOR (GRASS TURF) -->
   <a-plane position="0 -1 0"
            rotation="-90 0 0"
-           width="12" height="12"
-           color="#1a1d23"
-           material="roughness: 0.9; metalness: 0.1">
+           width="20" height="20"
+           src="images/grass.jpg"
+           repeat="10 10">
   </a-plane>
 
-  <!-- ================= MINIMAL WALLS ================= -->
+  <!-- ================= WALLS (SOFT GRASS THEME) ================= -->
 
   <!-- BACK WALL -->
   <a-plane position="0 2 -6"
            width="12" height="5"
-           color="#181a1f"
-           material="roughness: 1">
+           color="#2e7d32">
   </a-plane>
 
   <!-- LEFT WALL -->
   <a-plane position="-6 2 0"
            rotation="0 90 0"
            width="12" height="5"
-           color="#16181d"
-           material="roughness: 1">
+           color="#388e3c">
   </a-plane>
 
   <!-- RIGHT WALL -->
   <a-plane position="6 2 0"
            rotation="0 -90 0"
            width="12" height="5"
-           color="#16181d"
-           material="roughness: 1">
+           color="#388e3c">
   </a-plane>
 
   <!-- CEILING -->
   <a-plane position="0 5 0"
            rotation="90 0 0"
            width="12" height="12"
-           color="#20242b">
+           color="#c8e6c9">
   </a-plane>
 
-  <!-- TITLE TEXT -->
+  <!-- TEXT -->
   <a-text id="infoText"
           value="Ball Sports Gallery"
           position="0 4 -5.8"
           align="center"
           width="10"
-          color="#e6e6e6">
+          color="#ffffff">
   </a-text>
 
   <!-- ================= MODELS ================= -->
@@ -162,7 +151,6 @@ AFRAME.registerComponent('show-model', {
            src="images/basketball.png"
            position="-3 1.6 -5.9"
            width="2" height="2"
-           material="shader: standard; roughness: 0.5"
            show-model="message: Basketball; model: #basketball3D">
   </a-plane>
 
