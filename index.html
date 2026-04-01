@@ -20,15 +20,12 @@ AFRAME.registerComponent('show-model', {
   init: function () {
     this.el.addEventListener('click', () => {
 
-      // Update text
       document.querySelector('#infoText')
         .setAttribute('value', this.data.message);
 
-      // Hide all models
       document.querySelectorAll('.fitness-model')
         .forEach(m => m.setAttribute('visible', false));
 
-      // Show selected model
       if (this.data.model) {
         this.data.model.setAttribute('visible', true);
       }
@@ -57,20 +54,43 @@ AFRAME.registerComponent('show-model', {
 
   <!-- FLOOR -->
   <a-plane position="0 -1 0" rotation="-90 0 0"
-           width="12" height="12" color="#9CAF88"></a-plane>
+           width="12" height="12"
+           src="images/ground_sports_texture.jpg"
+           repeat="6 6">
+  </a-plane>
 
-  <!-- WALLS -->
-  <a-plane position="0 2 -6" width="12" height="5" color="#FFA4A4"></a-plane>
+  <!-- ================= THEMED WALLS ================= -->
 
-  <a-plane position="-6 2 0" rotation="0 90 0"
-           width="12" height="5" color="#FFBDBD"></a-plane>
+  <!-- BACK WALL (Basketball Theme) -->
+  <a-plane position="0 2 -6"
+           width="12" height="5"
+           src="images/basketball_texture.jpg"
+           repeat="6 2">
+  </a-plane>
 
-  <a-plane position="6 2 0" rotation="0 -90 0"
-           width="12" height="5" color="#FFBDBD"></a-plane>
+  <!-- LEFT WALL (Football Theme) -->
+  <a-plane position="-6 2 0"
+           rotation="0 90 0"
+           width="12" height="5"
+           src="images/football_texture.jpg"
+           repeat="6 2">
+  </a-plane>
 
-  <!-- CEILING -->
-  <a-plane position="0 5 0" rotation="90 0 0"
-           width="12" height="12" color="#FFF5F5"></a-plane>
+  <!-- RIGHT WALL (Tennis/Cricket Theme) -->
+  <a-plane position="6 2 0"
+           rotation="0 -90 0"
+           width="12" height="5"
+           src="images/tennis_texture.jpg"
+           repeat="6 2">
+  </a-plane>
+
+  <!-- CEILING (Neutral Light Texture) -->
+  <a-plane position="0 5 0"
+           rotation="90 0 0"
+           width="12" height="12"
+           src="images/ceiling_light_texture.jpg"
+           repeat="4 4">
+  </a-plane>
 
   <!-- TEXT -->
   <a-text id="infoText"
